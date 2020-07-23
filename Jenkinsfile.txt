@@ -1,0 +1,18 @@
+pipeline {
+    agent { dockerfile true }
+    stages {
+        stage('Test') {
+            steps {
+		checkout scm
+
+    docker.withRegistry('https://registry.hub.docker.com', 'Dockerhub') {
+
+        def customImage = docker.build("anshul0825/dockersession1")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+		}
+		}
+		}
+		}
+		}
